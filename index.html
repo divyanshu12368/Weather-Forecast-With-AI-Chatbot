@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast with AI Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for sleek icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Weather Dashboard Segment -->
+        <main class="weather-dashboard glass-panel">
+            <header class="header">
+                <h1><i class="fa-solid fa-cloud-sun-rain"></i> WeatherAI</h1>
+                <div class="search-bar">
+                    <input type="text" id="city-input" placeholder="Search for a city...">
+                    <button id="search-btn"><i class="fa-solid fa-search"></i></button>
+                    <button id="location-btn" title="Use Current Location"><i class="fa-solid fa-location-crosshairs"></i></button>
+                </div>
+            </header>
+
+            <div class="weather-content" id="weather-content">
+                <!-- Loading Animation -->
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Fetching weather data...</p>
+                </div>
+
+                <!-- Error Display -->
+                <div id="error-message" class="hidden error-card">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p id="error-text">City not found. Please try again.</p>
+                </div>
+
+                <!-- Real-time Weather Informative Section -->
+                <section class="current-weather hidden" id="current-weather">
+                    <div class="main-info">
+                        <div class="city-date">
+                            <h2 id="city-name">--</h2>
+                            <p id="current-date">--</p>
+                        </div>
+                        <div class="temp-condition">
+                            <img id="weather-icon" src="" alt="Weather Icon" class="large-icon">
+                            <div class="temp">
+                                <span id="temperature">--</span>°C
+                            </div>
+                            <div class="condition" id="weather-condition">--</div>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-card">
+                            <i class="fa-solid fa-droplet"></i>
+                            <div class="detail-info">
+                                <span>Humidity</span>
+                                <strong id="humidity">--%</strong>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fa-solid fa-wind"></i>
+                            <div class="detail-info">
+                                <span>Wind Speed</span>
+                                <strong id="wind-speed">-- km/h</strong>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fa-solid fa-temperature-half"></i>
+                            <div class="detail-info">
+                                <span>Feels Like</span>
+                                <strong id="feels-like">--°C</strong>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5-Day Forecast -->
+                <section class="forecast hidden" id="forecast-section">
+                    <h3>5-Day Forecast</h3>
+                    <div class="forecast-container" id="forecast-container">
+                        <!-- Dynamic Forecast cards -->
+                    </div>
+                </section>
+                
+                <!-- Initial Landing Screen -->
+                <section class="default-state" id="default-state">
+                    <i class="fa-solid fa-map-location-dot bounce"></i>
+                    <h2>Welcome to WeatherAI</h2>
+                    <p>Search for a city to get real-time weather information, or click the location icon to check your local area.</p>
+                </section>
+            </div>
+        </main>
+
+        <!-- AI Chatbot Overlay -->
+        <div class="chatbot-wrapper">
+            <!-- Floating Assistant Window -->
+            <div class="chat-window hidden" id="chat-window">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <div class="bot-avatar" id="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div>
+                            <h4 id="bot-name">WeatherBot</h4>
+                            <span class="status">Online</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <select id="bot-selector" class="bot-selector" title="Switch AI Model">
+                            <option value="local">Basic AI</option>
+                            <option value="gemini">Gemini AI</option>
+                        </select>
+                        <button class="close-chat" id="close-chat"><i class="fa-solid fa-times"></i></button>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot">
+                        Hi there! I'm WeatherBot. I can answer questions about temperature, rain, wind, or the general weather. Ask me anything!
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="E.g., What is the weather in Delhi?">
+                    <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+            
+            <!-- Chat Trigger Button -->
+            <button class="chat-toggle" id="chat-toggle">
+                <i class="fa-solid fa-message"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Execute script as a module -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
