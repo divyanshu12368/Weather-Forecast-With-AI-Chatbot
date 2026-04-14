@@ -1,7 +1,7 @@
 // Modules are inherently strictly scoped
 import { getWeatherData, getForecastData, getWeatherByCoords } from './api/weatherApi.js';
 import { processChatMessage, updateChatbotContext } from './chatbot/chatbot.js';
-import { processGeminiMessage } from './chatbot/gemini.js';
+// import { processGeminiMessage } from './chatbot/gemini.js';
 
 // --- Dashboard Component Registries ---
 const cityInput = document.getElementById('city-input');
@@ -235,11 +235,8 @@ async function handleSendMessage() {
 
     // Route logic dynamically to selected AI model
     let botResponse = "";
-    if (activeBotModel === 'gemini') {
-        botResponse = await processGeminiMessage(text, currentCityName);
-    } else {
-        botResponse = await processChatMessage(text);
-    }
+    botResponse = await processChatMessage(text);
+    
 
     // AI task lifecycle completion resolution
     removeTypingIndicator(typingId);
