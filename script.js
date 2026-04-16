@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     locationBtn.addEventListener('click', handleLocationSearch);
 
-    // Chatbot visual UX bindings
+    // Chatbot visual bindings
     chatToggle.addEventListener('click', () => {
         chatWindow.classList.toggle('hidden');
         if (!chatWindow.classList.contains('hidden')) {

@@ -38,19 +38,3 @@ export async function getWeatherByCoords(lat, lon) {
         forecastData: await forecastRes.json()
     };
 }
-
-
-
-
-// // Maps atmospheric WMO code to matching OpenWeatherMap custom UI Icon ID
-// function mapIconCode(code, isDay) {
-//     const day = isDay ? 'd' : 'n';
-//     if (code === 0) return `01${day}`;
-//     if (code === 1 || code === 2) return `02${day}`;
-//     if (code === 3) return `04${day}`;
-//     if (code === 45 || code === 48) return `50${day}`;
-//     if (code >= 51 && code <= 65) return `10${day}`;
-//     if (code >= 71 && code <= 75) return `13${day}`;
-//     if (code >= 95) return `11${day}`;
-//     return `01${day}`;
-// }
