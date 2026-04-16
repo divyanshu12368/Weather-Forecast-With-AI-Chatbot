@@ -472,26 +472,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Gemini Theme Visuals */
-.bot-avatar.gemini {
-    color: #8E24AA;
-    box-shadow: 0 2px 15px rgba(142, 36, 170, 0.3);
-}
-
-.message.bot.gemini {
-    background: #F3E5F5;
-    color: #4A148C;
-    border-bottom-left-radius: 4px;
-}
-
-.typing-indicator.gemini {
-    background: #F3E5F5;
-}
-
-.typing-indicator.gemini .typing-dot {
-    background: #8E24AA;
-}
-
 .chat-title h4 {
     font-size: 1.2rem;
     margin-bottom: 0.2rem;

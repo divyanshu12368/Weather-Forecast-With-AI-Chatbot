@@ -1,0 +1,28 @@
+.card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    width: 280px;
+}
+
+.city {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.temp {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.desc {
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-size: 14px;
+    opacity: 0.8;
+    margin: 4px 0;
+}

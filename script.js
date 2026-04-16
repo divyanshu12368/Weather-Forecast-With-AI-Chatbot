@@ -1,9 +1,8 @@
 // Modules are inherently strictly scoped
 import { getWeatherData, getForecastData, getWeatherByCoords } from './api/weatherApi.js';
 import { processChatMessage, updateChatbotContext } from './chatbot/chatbot.js';
-// import { processGeminiMessage } from './chatbot/gemini.js';
 
-// --- Dashboard Component Registries ---
+// dashboard component
 const cityInput = document.getElementById('city-input');
 const searchBtn = document.getElementById('search-btn');
 const locationBtn = document.getElementById('location-btn');
@@ -14,7 +13,7 @@ const loading = document.getElementById('loading');
 const errorMessage = document.getElementById('error-message');
 const errorText = document.getElementById('error-text');
 
-// --- Chatbot UI Registries ---
+// chatbot component
 const chatToggle = document.getElementById('chat-toggle');
 const chatWindow = document.getElementById('chat-window');
 const closeChat = document.getElementById('close-chat');
@@ -22,14 +21,10 @@ const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
 const chatMessages = document.getElementById('chat-messages');
 
-// Model Selector Registries
-const botSelector = document.getElementById('bot-selector');
-const botAvatar = document.getElementById('bot-avatar');
-const botName = document.getElementById('bot-name');
+
 
 // --- Global Application State ---
 let currentCityName = null;
-let activeBotModel = 'local'; // 'local' or 'gemini'
 
 // Initialize system hooks once DOM is fully available
 document.addEventListener('DOMContentLoaded', () => {
@@ -54,19 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWindow.classList.add('hidden');
     });
     
-    // AI Model Toggle Binding
-    botSelector.addEventListener('change', (e) => {
-        activeBotModel = e.target.value;
-        if (activeBotModel === 'gemini') {
-            botName.textContent = "Gemini AI";
-            botAvatar.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i>';
-            botAvatar.classList.add('gemini');
-        } else {
-            botName.textContent = "WeatherBot";
-            botAvatar.innerHTML = '<i class="fa-solid fa-robot"></i>';
-            botAvatar.classList.remove('gemini');
-        }
-    });
+    
 
     // Chatbot functional bindings
     sendBtn.addEventListener('click', handleSendMessage);
@@ -75,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ==========================================
+
 // CORE WEATHER PRESENTATION LOGIC
-// ==========================================
+
 
 async function handleSearch() {
     const city = cityInput.value.trim();
@@ -141,7 +124,6 @@ function updateDashboard(currentData, forecastData) {
     currentWeather.classList.remove('hidden');
     forecastSection.classList.remove('hidden');
 
-    // Store globally for Gemini Context Extraction
     currentCityName = currentData.name;
 
     // Systematically map live data to UI text elements
@@ -218,9 +200,9 @@ function showError(msg) {
     forecastSection.classList.add('hidden');
 }
 
-// ==========================================
-// CHATBOT INTERACTION CONTROLLER
-// ==========================================
+
+// chatbot interaction logic
+
 
 async function handleSendMessage() {
     const text = chatInput.value.trim();
@@ -247,14 +229,7 @@ async function handleSendMessage() {
 
 function appendMessage(text, sender) {
     const msgDiv = document.createElement('div');
-    
-    // Inject gemini theming classes dynamically if required
-    let classNames = `message ${sender}`;
-    if (sender === 'bot' && activeBotModel === 'gemini') {
-        classNames += ' gemini';
-    }
-    
-    msgDiv.className = classNames;
+    msgDiv.className = `message ${sender}`;
     msgDiv.textContent = text;
     chatMessages.appendChild(msgDiv);
     
@@ -266,10 +241,7 @@ function showTypingIndicator() {
     const id = 'typing-' + Date.now();
     const typingDiv = document.createElement('div');
     
-    let baseClass = 'typing-indicator';
-    if (activeBotModel === 'gemini') baseClass += ' gemini';
-    
-    typingDiv.className = baseClass;
+    typingDiv.className = 'typing-indicator';
     typingDiv.id = id;
     typingDiv.innerHTML = `
         <div class="typing-dot"></div>
