@@ -13,7 +13,7 @@ export async function getWeatherData(city) {
 // fetch weather forcast data
 
 export async function getForecastData(city) {
-    
+
 
     const response = await fetch(`${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`);
     if (!response.ok) throw new Error('Forecast not found');
@@ -24,15 +24,15 @@ export async function getForecastData(city) {
 // Fetch weather data based on geographic coordinates
 
 export async function getWeatherByCoords(lat, lon) {
-    
-    
+
+
     const [weatherRes, forecastRes] = await Promise.all([
         fetch(`${BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`),
         fetch(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
     ]);
-    
+
     if (!weatherRes.ok || !forecastRes.ok) throw new Error('Location data not found');
-    
+
     return {
         weatherData: await weatherRes.json(),
         forecastData: await forecastRes.json()
